@@ -1,0 +1,88 @@
+{
+  "name": "serverless-discord-client",
+  "version": "0.5.0",
+  "license": "MIT",
+  "main": "main/index.js",
+  "author": {
+    "name": "CodingButter"
+  },
+  "description": "Serverless Discord",
+  "keywords": [
+    "vite",
+    "react",
+    "electron",
+    "typescript"
+  ],
+  "repository": {
+    "url": "https://github.com/lTimeless/vite-reactts-electron-starter"
+  },
+  "productName": "Serverless Discord Client",
+  "scripts": {
+    "dev": "concurrently \"yarn dev:vite\" \" yarn dev:electron\"",
+    "dev:vite": "vite",
+    "dev:electron": "npm run build:electron && electron .",
+    "build": "npm run build:vite && npm run build:electron",
+    "build:vite": "vite build",
+    "build:electron": "tsc -p electron",
+    "dist": "npm run build && electron-builder",
+    "pack": "npm run build && electron-builder --dir",
+    "clean": "rimraf dist main src/out",
+    "type-check": "tsc",
+    "lint": "eslint . --ext js,jsx,ts,tsx",
+    "lint:fix": "eslint . --ext js,jsx,ts,tsx --fix"
+  },
+  "dependencies": {
+    "@types/nedb": "^1.8.12",
+    "@types/peerjs": "^1.1.0",
+    "@vitejs/plugin-react": "^1.2.0",
+    "classnames": "^2.3.2",
+    "electron-is-dev": "^2.0.0",
+    "electron-store": "^8.1.0",
+    "minecraft-rcon-client": "^1.5.2",
+    "my-react-snackbar": "^1.0.4",
+    "nedb": "^1.8.0",
+    "peerjs": "^1.4.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.4.0",
+    "react-router-dom": "^6.4.1",
+    "short-hash": "^1.0.0",
+    "uuid": "^9.0.0",
+    "vite": "^2.8.6"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.22",
+    "@types/react": "^17.0.41",
+    "@types/react-dom": "^17.0.14",
+    "@typescript-eslint/eslint-plugin": "5.16.0",
+    "@typescript-eslint/parser": "5.16.0",
+    "autoprefixer": "^10.4.4",
+    "concurrently": "^7.0.0",
+    "electron": "^17.1.2",
+    "electron-builder": "^22.14.13",
+    "eslint": "8.11.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "postcss": "^8.4.12",
+    "postcss-import": "^15.0.0",
+    "postcss-nesting": "^10.2.0",
+    "postcss-preset-env": "^7.8.2",
+    "prettier": "2.6.0",
+    "tailwindcss": "^3.0.23",
+    "typescript": "^4.6.2"
+  },
+  "build": {
+    "asar": true,
+    "files": [
+      "main",
+      "src/out"
+    ],
+    "directories": {
+      "buildResources": "resources"
+    }
+  }
+}
