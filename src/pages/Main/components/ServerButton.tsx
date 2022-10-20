@@ -8,12 +8,11 @@ export interface ServerButtonType extends React.ComponentPropsWithRef<'button'> 
 }
 
 export default function ServerButton({ serverName, avatar, className, ...rest }: ServerButtonType) {
-  //avatar = avatar || 'https://cdn.shopify.com/s/files/1/0059/3061/4851/products/B9A0615_576x.jpg?v=1651738132'
   return (
     <button
       {...rest}
       className={classNames(
-        'text-4xl w-14 h-14 flex justify-center items-center bg-skin-surface overflow-hidden rounded-full shadow-lg'
+        'text-4xl w-[50px] h-[50px] flex justify-center items-center bg-skin-surface overflow-hidden rounded-full shadow-lg'
       )}
     >
       {avatar ? <img src={avatar} alt="avatar" className="min-w-full min-h-full object-cover" /> : <AiOutlinePlus />}

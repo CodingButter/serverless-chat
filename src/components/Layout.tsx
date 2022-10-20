@@ -11,8 +11,13 @@ export default function Layout() {
   const { snackBars } = useSnackBar()
   const { userData } = useUserData()
   const { pathname } = useLocation()
-  const { popup, closePopup } = usePopup()
+  const { popup, setClosing, closing } = usePopup()
   const navigate = useNavigate()
+
+  const handleClosePopup = () => {
+    setClosing(true)
+  }
+
   useEffect(() => {
     if ((!userData?.loggedIn && pathname !== '/login') || !userData) {
       navigate('/login')
@@ -34,7 +39,11 @@ export default function Layout() {
         {snackBars?.map((snackBar: SnackBarType, index: number) => (
           <SnackBar {...snackBar} />
         ))}
-        {popup && <Popup closePopup={closePopup}>{popup}</Popup>}
+        {popup && (
+          <Popup setClosing={setClosing} closing={closing} closePopup={handleClosePopup}>
+            {popup}
+          </Popup>
+        )}
       </div>
     </div>
   )

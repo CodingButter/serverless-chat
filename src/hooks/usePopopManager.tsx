@@ -4,6 +4,8 @@ type PopupManager = {
   popup: React.ReactNode
   setPopup: (popup: React.ReactNode) => void
   closePopup: () => void
+  closing: boolean
+  setClosing: (closing: boolean) => void
 }
 
 const popupContext = createContext<PopupManager>({ popup: null, setPopup: () => {}, closePopup: () => {} })
@@ -12,7 +14,7 @@ export const usePopup = () => useContext(popupContext)
 
 export function PopupProvider({ children }: { children: React.ReactNode }) {
   const [popup, setPopup] = useState<React.ReactNode>(null)
-
+  const [closing, setClosing] = useState<boolean>(false)
   const closePopup = () => {
     setPopup(null)
   }
@@ -21,9 +23,11 @@ export function PopupProvider({ children }: { children: React.ReactNode }) {
     () => ({
       popup,
       setPopup,
-      closePopup
+      closePopup,
+      closing,
+      setClosing
     }),
-    [popup]
+    [popup, closing]
   )
 
   return <popupContext.Provider value={value}>{children}</popupContext.Provider>

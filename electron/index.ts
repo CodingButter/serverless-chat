@@ -1,7 +1,6 @@
 // Native
 import { join } from 'path'
 // @ts-ignore
-import Rcon from 'minecraft-rcon-client'
 import Store from 'electron-store'
 
 // Packages
@@ -10,7 +9,6 @@ import isDev from 'electron-is-dev'
 
 const storage: Store = new Store()
 
-const connections = new Map<string, Rcon>()
 const height = 600
 const width = 800
 function createWindow() {
@@ -84,43 +82,4 @@ ipcMain.handle('getItem', (_: IpcMainInvokeEvent, key: string) => {
 
 ipcMain.handle('setItem', (_: IpcMainInvokeEvent, { key, value }: { key: string; value: any }) => {
   storage.set(key, value)
-})
-
-interface RconConfig {
-  host: string
-  port: number
-  password: string
-}
-
-ipcMain.handle('connect', async (_: IpcMainInvokeEvent, { host, port, password }: RconConfig) => {
-  if (host && port && password) {
-    try {
-      const rcon = new Rcon({ host, port, password })
-      await rcon.connect()
-      connections.set(host, rcon)
-      return { status: 'success', message: 'Connected' }
-    } catch (error) {
-      console.log({ error })
-      return { err: error, status: 'error', message: 'Failed to connect' }
-    }
-  }
-  return { err: 'Missing required fields' }
-})
-
-interface RconCommand {
-  host: string
-  command: string
-}
-
-ipcMain.handle('command', async (_: IpcMainInvokeEvent, { host, command }: RconCommand) => {
-  const rcon = connections.get(host)
-  if (rcon) {
-    try {
-      const response = await rcon.send(command)
-      return { status: 'success', data: response }
-    } catch (error) {
-      return { status: 'error', err: error }
-    }
-  }
-  return { err: 'no connection' }
 })

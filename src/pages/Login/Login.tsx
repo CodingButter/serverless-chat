@@ -42,10 +42,6 @@ export default function Login() {
     }
   }
 
-  useEffect(() => {
-    setUsername(userData?.name)
-  }, [userData])
-
   return (
     <div className="w-full h-full bg-skin-base overflow-hidden flex flex-col items-center justify-center">
       <img className="z-0 object-cover absolute min-w-full min-h-full top-0 left-0" src={Background} alt="background" />
