@@ -5,18 +5,13 @@ import AppBar from './AppBar'
 import { useUserData } from '../hooks/useUserManager'
 import { useSnackBar, SnackBarType } from '../hooks/useSnackBar'
 import { usePopup } from '../hooks/usePopopManager'
-import Popup from './Popup'
 
 export default function Layout() {
   const { snackBars } = useSnackBar()
   const { userData } = useUserData()
   const { pathname } = useLocation()
-  const { popup, setClosing, closing } = usePopup()
+  const { Popup } = usePopup()
   const navigate = useNavigate()
-
-  const handleClosePopup = () => {
-    setClosing(true)
-  }
 
   useEffect(() => {
     if ((!userData?.loggedIn && pathname !== '/login') || !userData) {
@@ -39,11 +34,7 @@ export default function Layout() {
         {snackBars?.map((snackBar: SnackBarType, index: number) => (
           <SnackBar {...snackBar} />
         ))}
-        {popup && (
-          <Popup setClosing={setClosing} closing={closing} closePopup={handleClosePopup}>
-            {popup}
-          </Popup>
-        )}
+        {Popup && Popup}
       </div>
     </div>
   )

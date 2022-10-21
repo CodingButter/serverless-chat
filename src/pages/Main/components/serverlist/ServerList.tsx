@@ -5,10 +5,10 @@ import ServerButton from '../ServerButton'
 import CreateServer from '../createserver/CreateServer'
 export default function ServerList() {
   const { userData } = useUserData()
-  const { setPopup } = usePopup()
+  const { openPopup, closePopup } = usePopup()
 
   const handleCreateServer = () => {
-    setPopup(<CreateServer />)
+    openPopup(<CreateServer closePopup={closePopup} />)
   }
   return (
     <div className="flex flex-col p-2 justify-start h-full">

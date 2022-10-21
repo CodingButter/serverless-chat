@@ -1,33 +1,46 @@
 import React, { useContext, createContext, useState } from 'react'
+import Popup from '../components/Popup'
 
 type PopupManager = {
-  popup: React.ReactNode
-  setPopup: (popup: React.ReactNode) => void
+  Popup: React.ReactNode
+  openPopup: (popup: React.ReactNode) => void
   closePopup: () => void
-  closing: boolean
-  setClosing: (closing: boolean) => void
+  closed: boolean
 }
 
-const popupContext = createContext<PopupManager>({ popup: null, setPopup: () => {}, closePopup: () => {} })
+const popupContext = createContext<PopupManager>({
+  closed: true,
+  Popup: () => {},
+  openPopup: () => {},
+  closePopup: () => {}
+})
 
 export const usePopup = () => useContext(popupContext)
 
 export function PopupProvider({ children }: { children: React.ReactNode }) {
-  const [popup, setPopup] = useState<React.ReactNode>(null)
-  const [closing, setClosing] = useState<boolean>(false)
+  const [closed, setClosed] = useState<boolean>(true)
+  const [popupContent, setPopupContent] = useState<React.ReactNode>(null)
   const closePopup = () => {
-    setPopup(null)
+    setClosed(true)
   }
+  const openPopup = (content: React.ReactNode) => {
+    setPopupContent(content)
+    setClosed(false)
+  }
+  const popup = (
+    <Popup closed={closed} closePopup={closePopup}>
+      {popupContent}
+    </Popup>
+  )
 
   const value = React.useMemo(
     () => ({
-      popup,
-      setPopup,
+      Popup: popup,
       closePopup,
-      closing,
-      setClosing
+      closed,
+      openPopup
     }),
-    [popup, closing]
+    [popup, closed]
   )
 
   return <popupContext.Provider value={value}>{children}</popupContext.Provider>
