@@ -2,10 +2,10 @@
 import { join } from 'path'
 // @ts-ignore
 import Store from 'electron-store'
-
 // Packages
 import { BrowserWindow, app, ipcMain, IpcMainInvokeEvent } from 'electron'
 import isDev from 'electron-is-dev'
+import getServerUrl from './src/server'
 
 const storage: Store = new Store()
 
@@ -73,6 +73,10 @@ app.whenReady().then(() => {
 // explicitly with Cmd + Q.
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
+})
+
+ipcMain.handle('get_server_url', (_: IpcMainInvokeEvent, __: string) => {
+  return getServerUrl()
 })
 
 ipcMain.handle('getItem', (_: IpcMainInvokeEvent, key: string) => {
