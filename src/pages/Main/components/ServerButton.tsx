@@ -20,7 +20,7 @@ export default function ServerButton({ serverName, avatar, className, selected, 
       )}
     >
       <div className="flex justify-center items-center absolute h-full w-1 left-0 top-0">
-        <div className="indicator w-full h-[4px] rounded-lg  bg-white transition-all duration-500"></div>
+        <div className="indicator w-full h-[4px] rounded-lg bg-white transition-all duration-500"></div>
       </div>
       <div className="relative text-4xl w-[50px] h-[50px] flex justify-center items-center bg-skin-surface overflow-hidden rounded-full shadow-lg">
         {avatar ? (
