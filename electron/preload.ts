@@ -47,6 +47,10 @@ const api = {
   getItem: (key: string) => {
     const response = ipcRenderer.invoke('getItem', key)
     return response
+  },
+  getServerAddress: () => {
+    const response = ipcRenderer.invoke('getServerAddress')
+    return response
   }
 }
 contextBridge.exposeInMainWorld('Main', api)

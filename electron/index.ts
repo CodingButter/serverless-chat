@@ -5,7 +5,7 @@ import Store from 'electron-store'
 // Packages
 import { BrowserWindow, app, ipcMain, IpcMainInvokeEvent } from 'electron'
 import isDev from 'electron-is-dev'
-import getServerUrl from './src/server'
+import getServerAddress from './src/server'
 
 const storage: Store = new Store()
 
@@ -75,8 +75,8 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
 
-ipcMain.handle('get_server_url', (_: IpcMainInvokeEvent, __: string) => {
-  return getServerUrl()
+ipcMain.handle('getServerAddress', (_: IpcMainInvokeEvent, __: string) => {
+  return getServerAddress()
 })
 
 ipcMain.handle('getItem', (_: IpcMainInvokeEvent, key: string) => {

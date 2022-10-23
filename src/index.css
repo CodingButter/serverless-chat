@@ -40,6 +40,13 @@ body,
 }
 
 @layer components {
+  .server-button:hover .indicator {
+    height: 25%;
+  }
+  .server-button.selected .indicator {
+    height: 50%;
+  }
+
   * {
     @apply outline-0;
   }

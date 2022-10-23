@@ -4,6 +4,7 @@
     "noUnusedParameters": false,
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "typeRoots": ["node_modules/@types", "**/src/@types"],
     "types": ["vite/client", "node"],
     "allowJs": false,
     "skipLibCheck": false,

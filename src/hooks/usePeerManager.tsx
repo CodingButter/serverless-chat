@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import shortHash from 'short-hash'
 import { Peer, DataConnection } from 'peerjs'
-import { User } from './useUserManager'
+import { User } from './useAuth'
 
 export type Channel = {
   name: string

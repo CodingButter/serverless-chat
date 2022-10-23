@@ -28,7 +28,7 @@ export default function Popup({ closePopup, closed, children, ...rest }: PopupTy
       {...rest}
       className={`w-full h-full flex flex-col justify-center items-center gap-4 ${
         !show ? 'z-[-100]' : 'z-[100]'
-      } top-0 left-0 absolute ${!show ? 'bg-black/40' : 'bg-none'}`}
+      } top-0 left-0 absolute ${closed ? 'bg-none' : 'bg-black/40'}`}
     >
       <button aria-label="close" onClick={closePopup} className="w-full h-full absolute top-0 left-0" />
       <animated.div style={popupStyles} className="z-[50]">

@@ -3,45 +3,27 @@ import { useNavigate } from 'react-router-dom'
 import Background from '../../assets/images/login-background.png'
 import Input from '../../components/Input'
 import Surface from '../../components/Surface'
-import { useUserData } from '../../hooks/useUserManager'
+import { useAuth } from '../../hooks/useAuth'
 import { useSnackBar } from '../../hooks/useSnackBar'
+import { fetchData } from '../../hooks/useApi'
 
 export default function Login() {
   const navigate = useNavigate()
-  const { userData, setUserData } = useUserData()
+  const { login } = useAuth()
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const passwordRef = useRef<HTMLInputElement>(null)
   const { addSnackBar } = useSnackBar()
 
-  const handleLogin = () => {
-    setUserData({ name: username, password, loggedIn: true })
-    navigate('/main')
-  }
-
-  const handleLoginCheck = (): void => {
-    if (username && password) {
-      if (username === userData?.name) {
-        if (password !== userData?.password) {
-          addSnackBar({
-            message: 'Wrong Password, Overwrite current user?',
-            type: 'error',
-            containerStyle: { height: '75px' },
-            onYes: handleLogin,
-            onNo: () => {
-              passwordRef?.current?.focus()
-              setPassword('')
-            }
-          })
-        } else {
-          handleLogin()
-        }
-      } else {
-        handleLogin()
-      }
+  const handleLogin = async () => {
+    const data = await fetchData('/login', { username, password })
+    if (data.token) {
+      login(data.token)
+      navigate('/')
+    } else if (data.error) {
+      addSnackBar(data.error, 'error')
     }
   }
-
   return (
     <div className="w-full h-full bg-skin-base overflow-hidden flex flex-col items-center justify-center">
       <img className="z-0 object-cover absolute min-w-full min-h-full top-0 left-0" src={Background} alt="background" />
@@ -62,7 +44,7 @@ export default function Login() {
               placeholder="Password"
               value={password}
             />
-            <Input onClick={handleLoginCheck} type="submit" value="Login" className="w-full hover:bg-opacity-50" />
+            <Input onClick={handleLogin} type="submit" value="Login" className="w-full hover:bg-opacity-50" />
           </div>
         </Surface>
       </div>
