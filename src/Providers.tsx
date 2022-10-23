@@ -1,17 +1,17 @@
 import React from 'react'
 import { AuthProvider } from './hooks/useAuth'
 import { SnackBarProvider } from './hooks/useSnackBar'
-import { PopupProvider } from './hooks/usePopopManager'
+import { ModalProvider } from './hooks/useModal'
 import { UserStateProvider } from './hooks/useUserState'
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <PopupProvider>
+    <ModalProvider>
       <SnackBarProvider>
         <AuthProvider>
           <UserStateProvider>{children}</UserStateProvider>
         </AuthProvider>
       </SnackBarProvider>
-    </PopupProvider>
+    </ModalProvider>
   )
 }

@@ -1,14 +1,14 @@
 import React from 'react'
-import { usePopup } from '../../../../hooks/usePopopManager'
+import { useModal } from '../../../../hooks/useModal'
 import ServerButton from '../ServerButton'
 import CreateServer from '../createserver/CreateServer'
 import { useUserState } from '../../../../hooks/useUserState'
 export default function ServerList({ servers }: { servers: any }) {
-  const { openPopup, closePopup } = usePopup()
+  const { openModal, closeModal } = useModal()
   const { userState, setUserState } = useUserState()
   const { selectedServer } = userState
   const handleCreateServer = () => {
-    openPopup(<CreateServer closePopup={closePopup} />)
+    openModal(<CreateServer closeModal={closeModal} />)
   }
 
   const handleSelectServer = (serverId: number) => {

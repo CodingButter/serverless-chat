@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { useSpring, animated } from 'react-spring'
 
-export interface PopupType extends React.ComponentPropsWithRef<'div'> {
+export interface ModalType extends React.ComponentPropsWithRef<'div'> {
   children: React.ReactNode
-  closePopup: () => void
+  closeModal: () => void
   closed: boolean
 }
 
-export default function Popup({ closePopup, closed, children, ...rest }: PopupType) {
+export default function Modal({ closeModal, closed, children, ...rest }: ModalType) {
   const [show, setShow] = useState<boolean>(false)
-  const popupStyles = useSpring({
+  const modalStyles = useSpring({
     config: { velocity: 0.003, mass: 0.7, tension: 500, friction: 24 },
     to: !closed
       ? async (next, cancel) => {
@@ -30,8 +30,8 @@ export default function Popup({ closePopup, closed, children, ...rest }: PopupTy
         !show ? 'z-[-100]' : 'z-[100]'
       } top-0 left-0 absolute ${closed ? 'bg-none' : 'bg-black/40'}`}
     >
-      <button aria-label="close" onClick={closePopup} className="w-full h-full absolute top-0 left-0" />
-      <animated.div style={popupStyles} className="z-[50]">
+      <button aria-label="close" onClick={closeModal} className="w-full h-full absolute top-0 left-0" />
+      <animated.div style={modalStyles} className="z-[50]">
         {children}
       </animated.div>
     </div>

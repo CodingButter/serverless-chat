@@ -3,11 +3,11 @@ import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import SnackBar from 'my-react-snackbar'
 import AppBar from './AppBar'
 import { useSnackBar, SnackBarType } from '../hooks/useSnackBar'
-import { usePopup } from '../hooks/usePopopManager'
+import { useModal } from '../hooks/useModal'
 
 export default function Layout() {
   const { snackBars } = useSnackBar()
-  const { Popup } = usePopup()
+  const { Modal } = useModal()
   return (
     <div className="flex flex-col h-full bg-skin-base text-skin-base">
       {window.Main && (
@@ -22,7 +22,7 @@ export default function Layout() {
         {snackBars?.map((snackBar: SnackBarType, index: number) => (
           <SnackBar {...snackBar} />
         ))}
-        {Popup && Popup}
+        {Modal && Modal}
       </div>
     </div>
   )

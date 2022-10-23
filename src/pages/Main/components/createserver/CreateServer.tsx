@@ -4,13 +4,13 @@ import OutlineButton from './OutlineButton'
 import defaultTemplate from '../../../../assets/server_templates/default_template'
 import serverTemplates from '../../../../assets/server_templates/templates'
 export interface ContainerProps extends React.ComponentPropsWithRef<'div'> {
-  closePopup: () => void
+  closeModal: () => void
 }
-export default function CreateServer({ closePopup }: ContainerProps) {
+export default function CreateServer({ closeModal }: ContainerProps) {
   return (
     <div className="py-4 px-4 pb-[100px] gap-2 flex flex-col justify-center items-center rounded shadow-lg relative bg-white thin-scroll">
       <div className="absolute right-0 top-0 text-skin-muted">
-        <button onClick={closePopup} className="flex items-center justify-center mt-3 mr-3 text-2xl">
+        <button onClick={closeModal} className="flex items-center justify-center mt-3 mr-3 text-2xl">
           <AiOutlineClose />
         </button>
       </div>
