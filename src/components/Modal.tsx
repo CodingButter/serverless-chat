@@ -5,10 +5,11 @@ export interface ModalType extends React.ComponentPropsWithRef<'div'> {
   children: React.ReactNode
   closeModal: () => void
   closed: boolean
+  show: boolean
+  setShow: (show: boolean) => void
 }
 
-export default function Modal({ closeModal, closed, children, ...rest }: ModalType) {
-  const [show, setShow] = useState<boolean>(false)
+export default function Modal({ closeModal, closed, show, setShow, children, ...rest }: ModalType) {
   const modalStyles = useSpring({
     config: { velocity: 0.003, mass: 0.7, tension: 500, friction: 24 },
     to: !closed
@@ -28,7 +29,7 @@ export default function Modal({ closeModal, closed, children, ...rest }: ModalTy
       {...rest}
       className={`w-full h-full flex flex-col justify-center items-center gap-4 ${
         !show ? 'z-[-100]' : 'z-[100]'
-      } top-0 left-0 absolute ${closed ? 'bg-none' : 'bg-black/40'}`}
+      } top-0 left-0 absolute ${closed ? 'bg-none' : 'bg-skin-base/50'}`}
     >
       <button aria-label="close" onClick={closeModal} className="w-full h-full absolute top-0 left-0" />
       <animated.div style={modalStyles} className="z-[50]">

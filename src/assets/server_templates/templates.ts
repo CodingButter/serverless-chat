@@ -15,5 +15,10 @@ export default [
     label: 'Study Group',
     icon: NewServerIcon,
     channels: []
+  },
+  {
+    label: 'Fan Club',
+    icon: NewServerIcon,
+    channels: []
   }
 ]

@@ -7,7 +7,7 @@ interface Props {
 }
 function Surface({ children, className, ...rest }: Props) {
   return (
-    <div className={classNames('bg-skin-surface rounded shadow-lg p-12 flex flex-col', className)} {...rest}>
+    <div className={classNames('bg-skin-surface rounded shadow-lg px-12 py-4 flex flex-col', className)} {...rest}>
       {children}
     </div>
   )

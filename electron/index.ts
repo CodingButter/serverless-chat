@@ -17,7 +17,7 @@ function createWindow() {
     width,
     height,
     //  change to false to use AppBar
-    frame: true,
+    frame: false,
     show: true,
     resizable: true,
     fullscreenable: true,

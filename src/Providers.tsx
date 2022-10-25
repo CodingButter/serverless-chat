@@ -6,12 +6,12 @@ import { UserStateProvider } from './hooks/useUserState'
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <ModalProvider>
+    <AuthProvider>
       <SnackBarProvider>
-        <AuthProvider>
+        <ModalProvider>
           <UserStateProvider>{children}</UserStateProvider>
-        </AuthProvider>
+        </ModalProvider>
       </SnackBarProvider>
-    </ModalProvider>
+    </AuthProvider>
   )
 }

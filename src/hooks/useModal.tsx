@@ -19,6 +19,7 @@ export const useModal = () => useContext(modalContext)
 
 export function ModalProvider({ children }: { children: React.ReactNode }) {
   const [closed, setClosed] = useState<boolean>(true)
+  const [show, setShow] = useState<boolean>(false)
   const [modalContent, setModalContent] = useState<React.ReactNode>(null)
   const closeModal = () => {
     setClosed(true)
@@ -28,7 +29,7 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
     setClosed(false)
   }
   const modal = (
-    <Modal closed={closed} closeModal={closeModal}>
+    <Modal closed={closed} closeModal={closeModal} show={show} setShow={setShow}>
       {modalContent}
     </Modal>
   )
