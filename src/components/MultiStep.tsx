@@ -17,16 +17,30 @@ export default function MultiStep({ children, step }: StepProps) {
   const transform = `translateX(-${previousWidths || 0}px)`
 
   useEffect(() => {
-    const elements = document.querySelectorAll('.multi-step > * > *')
+    const resizeObservers: ResizeObserver[] = []
+    const elements: HTMLElement[] = Array.from(document.querySelectorAll('.multi-step > * > *'))
     setSizes(
-      Array.from(elements).map((element, _) => {
-        const elm = element as HTMLElement
+      elements.map((elm: HTMLElement, index) => {
+        const resizeObserver = new ResizeObserver(() => {
+          setSizes((currentSizes) => {
+            const newSizes = [...currentSizes]
+            newSizes[index] = { width: elm.offsetWidth, height: elm.offsetHeight }
+            return newSizes
+          })
+        })
+        resizeObserver.observe(elm)
+        resizeObservers.push(resizeObserver)
         return {
           width: elm.offsetWidth,
           height: elm.offsetHeight
         }
       })
     )
+    return () => {
+      resizeObservers.forEach((observer: ResizeObserver) => {
+        observer.disconnect()
+      })
+    }
   }, [])
   return (
     <div className="overflow-hidden transition-all duration-500" style={sizeStyle}>

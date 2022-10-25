@@ -34,7 +34,9 @@ type Channel = {
 }
 
 export type Server = {
-  avatar: string | null
+  name: string | null | undefined
+  creation_date: string | null | undefined
+  avatar: string | null | undefined
   categories: Category[]
   channels: Channel[]
   roles: Role[]

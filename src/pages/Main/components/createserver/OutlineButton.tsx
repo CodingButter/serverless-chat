@@ -17,7 +17,7 @@ export default function OutlineButton({ icon, label, description, ...rest }: Out
         {icon && <img className="w-[40px] h-[40px]" src={icon} />}
         <div className="relative h-full w-full flex justify-start items-center">
           <h3 className="font-bold capitalize">{label}</h3>
-          <p className="text-skin-muted text-left text-[.7em] w-full absolute left-0 -bottom-2">{description}</p>
+          <p className="text-skin-muted text-left text-[.7em] w-full absolute left-0 -bottom-4">{description}</p>
         </div>
       </div>
       <FaChevronRight />

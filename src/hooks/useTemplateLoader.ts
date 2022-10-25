@@ -15,19 +15,27 @@ export const useFetchTemplates = (url: string | null) => {
   return { templates, error, loading }
 }
 
-export const mergeTemplates = (defaultTemplate: Server, mergingTemplate: Server) => {
+export const mergeTemplates = (defaultTemplate: Partial<Server>, mergingTemplate: Partial<Server>) => {
   const mergedTemplate = {
-    ...defaultTemplate,
-    ...mergingTemplate,
-    categories: [...defaultTemplate.categories, ...mergingTemplate.categories],
-    channels: [...defaultTemplate.channels, ...mergingTemplate.channels],
-    roles: [...defaultTemplate.roles, ...mergingTemplate.roles],
-    channel_permissions: [...defaultTemplate.channel_permissions, ...mergingTemplate.channel_permissions],
-    server_permissions: [...defaultTemplate.server_permissions, ...mergingTemplate.server_permissions]
-  }
-  return mergedTemplate as Server
+    name: mergingTemplate.name || '',
+    avatar: mergingTemplate.avatar || defaultTemplate.avatar,
+    creation_date: mergingTemplate.creation_date || defaultTemplate.creation_date,
+    categories: [...(defaultTemplate.categories || []), ...(mergingTemplate.categories || [])],
+    channels: [...(defaultTemplate.channels || []), ...(mergingTemplate.channels || [])],
+    roles: [...(defaultTemplate.roles || []), ...(mergingTemplate.roles || [])],
+    channel_permissions: [
+      ...(defaultTemplate.channel_permissions || []),
+      ...(mergingTemplate.channel_permissions || [])
+    ],
+    server_permissions: [...(defaultTemplate.server_permissions || []), ...(mergingTemplate.server_permissions || [])]
+  } as Server
+
+  return mergedTemplate
 }
-const serverSchema: Server = {
+
+export const serverSchema: Server = {
+  name: 'Server Name',
+  creation_date: Date.now().toString(),
   avatar: '',
   categories: [],
   channels: [],
