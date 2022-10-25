@@ -1,0 +1,29 @@
+{
+  "default_template": {
+    "label": "Basic Template",
+    "icon": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/icons/nodes-icon.png",
+    "description": "Chat and spend time with your friends"
+  },
+  "additional_templates": [
+    {
+      "label": "Gaming",
+      "icon": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/icons/nodes-icon.png",
+      "description": "Play games with your friends"
+    },
+    {
+      "label": "School Club",
+      "icon": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/icons/nodes-icon.png",
+      "description": "Talk about school stuff"
+    },
+    {
+      "label": "Study Group",
+      "icon": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/icons/nodes-icon.png",
+      "description": "Study together"
+    },
+    {
+      "label": "Fan Club",
+      "icon": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/icons/nodes-icon.png",
+      "description": "Talk about your favorite things"
+    }
+  ]
+}
