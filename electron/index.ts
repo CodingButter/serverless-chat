@@ -4,31 +4,33 @@ import { join } from 'path'
 import Store from 'electron-store'
 // Packages
 import { BrowserWindow, app, ipcMain, IpcMainInvokeEvent } from 'electron'
+
 import isDev from 'electron-is-dev'
 import getServerAddress from './src/server'
 
 const storage: Store = new Store()
 
-const height = 600
-const width = 800
+const windowBounds = (storage.get('windowBounds') as any) || { width: 800, height: 600, x: 0, y: 0 }
+const windowOptions = {
+  ...windowBounds,
+  //  change to false to use AppBar
+  frame: isDev,
+  show: true,
+  resizable: true,
+  fullscreenable: true,
+  webPreferences: {
+    devTools: isDev,
+    contextIsolation: true,
+    webSecurity: !isDev,
+    preload: join(__dirname, 'preload.js')
+  }
+}
 function createWindow() {
   // Create the browser window.
-  const window = new BrowserWindow({
-    width,
-    height,
-    //  change to false to use AppBar
-    frame: false,
-    show: true,
-    resizable: true,
-    fullscreenable: true,
-    webPreferences: {
-      contextIsolation: true,
-      preload: join(__dirname, 'preload.js')
-    }
-  })
+  const window = new BrowserWindow(windowOptions)
 
   const port = process.env.PORT || 3000
-  const url = isDev ? `http://localhost:${port}` : join(__dirname, '../src/out/index.html')
+  const url = isDev ? `http://localhost:${port}` : join(__dirname, '../../src/out/index.html')
 
   // and load the index.html of the app.
   if (isDev) {
@@ -38,6 +40,12 @@ function createWindow() {
   }
   // Open the DevTools.
   // window.webContents.openDevTools();
+  const saveBounds = () => {
+    const { x, y, width: w, height: h } = window.getBounds()
+    storage.set('windowBounds', { x, y, width: w, height: h })
+  }
+  window.on('resize', saveBounds)
+  window.on('move', saveBounds)
 
   // For AppBar
   ipcMain.on('minimize', () => {

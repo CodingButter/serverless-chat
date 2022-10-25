@@ -1,19 +1,21 @@
+const { join } = require('path')
 // Update with your config settings.
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
+
 const databases = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: './data/local.db3'
+      filename: join(__dirname, './data/local.db3')
     },
     seeds: {
-      directory: './data/seeds'
+      directory: join(__dirname, './data/seeds')
     },
     migrations: {
-      directory: './data/migrations'
+      directory: join(__dirname, './data/migrations')
     },
     useNullAsDefault: true
   }
