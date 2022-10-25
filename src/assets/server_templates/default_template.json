@@ -2,9 +2,9 @@
   "label": "Create my own",
   "name": "Default (create my own)",
   "description": "Default Server Template",
-  "template_icon":"https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/icons/new_server_default.png",
+  "template_icon": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/icons/new_server_default.png",
   "server_settings": {
-    "avatar": ,
+    "avatar": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/icons/nodes-icon.png",
     "channel_permissions": [
       {
         "id": "PIN_MESSAGES",
