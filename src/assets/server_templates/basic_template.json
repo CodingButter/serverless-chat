@@ -35,7 +35,7 @@
       "roles": [
         {
           "name": "everyone",
-          "additional_permissions": [],
+          "extends": "EVERYONE",
           "denied_permissions": ["EMBED_LINKS", "ATTACH_FILES", "SEND_TTS_MESSAGES"]
         }
       ]

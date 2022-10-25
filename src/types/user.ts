@@ -5,15 +5,15 @@ export type User = {
   token: string | null
 }
 export type Server = {
-  id: number
-  userId: number
-  name: string
+  id: number | null
+  userId: number | null
+  name: string | null
 }
 export type Channel = {
-  id: number
-  serverId: number
-  name: string
-  userId: number
+  id: number | null
+  serverId: number | null
+  name: string | null
+  userId: number | null
 }
 
 export type UserState = {

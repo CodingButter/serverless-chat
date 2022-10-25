@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import useFetch from './useFetch'
+import { Server, Templates } from '../types/server'
 
-export const useFetchTemplates = (url: string) => {
+export const useFetchTemplates = (url: string | null) => {
   const { response, error, loading } = useFetch(url)
-  const [templates, setTemplates] = useState([])
+  const [templates, setTemplates] = useState<Templates | null>(null)
 
   useEffect(() => {
     if (response) {
@@ -14,13 +15,33 @@ export const useFetchTemplates = (url: string) => {
   return { templates, error, loading }
 }
 
-export const useFetchTemplate = (url: string) => {
-  const filename = url.split('/').pop()
+export const mergeTemplates = (defaultTemplate: Server, mergingTemplate: Server) => {
+  const mergedTemplate = {
+    ...defaultTemplate,
+    ...mergingTemplate,
+    categories: [...defaultTemplate.categories, ...mergingTemplate.categories],
+    channels: [...defaultTemplate.channels, ...mergingTemplate.channels],
+    roles: [...defaultTemplate.roles, ...mergingTemplate.roles],
+    channel_permissions: [...defaultTemplate.channel_permissions, ...mergingTemplate.channel_permissions],
+    server_permissions: [...defaultTemplate.server_permissions, ...mergingTemplate.server_permissions]
+  }
+  return mergedTemplate as Server
+}
+const serverSchema: Server = {
+  avatar: '',
+  categories: [],
+  channels: [],
+  roles: [],
+  channel_permissions: [],
+  server_permissions: []
+}
+export const useFetchTemplate = (url: string | null) => {
+  const filename = url?.split?.('/').pop() || ''
   const { response: templateResponse, error: errorResponse, loading: loadingResponse } = useFetch(url)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<any | null>(null)
   const [progress, setProgress] = useState<any | null>(`Downloading ${filename}`)
-  const [template, setTemplate] = useState([])
+  const [template, setTemplate] = useState<Server>(serverSchema)
 
   const fetchExtendedTemplate = async (extUrl: string) => {
     try {
@@ -31,7 +52,7 @@ export const useFetchTemplate = (url: string) => {
       let tmpTemplate = json
       if (json.extends) {
         const extendedTemplate = await fetchExtendedTemplate(json.extends)
-        tmpTemplate = { ...extendedTemplate, ...json }
+        tmpTemplate = mergeTemplates(json, extendedTemplate)
       }
       return tmpTemplate
     } catch (err: any) {
@@ -41,10 +62,13 @@ export const useFetchTemplate = (url: string) => {
   }
 
   const buildTemplate = async () => {
-    const tmpTemplate = await fetchExtendedTemplate(url)
+    let tmpTemplate = templateResponse
+    if (templateResponse.extends) {
+      tmpTemplate = (await fetchExtendedTemplate(templateResponse.extends)) as Server
+    }
     setProgress(`${filename} downloaded`)
     setLoading(false)
-    setTemplate({ ...tmpTemplate, ...templateResponse })
+    setTemplate(mergeTemplates(templateResponse, tmpTemplate))
   }
 
   useEffect(() => {
