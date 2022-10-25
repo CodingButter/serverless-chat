@@ -1,14 +1,15 @@
 import React from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import OutlineButton from '../OutlineButton'
-import defaultTemplate from '../../../../../assets/server_templates/default_template'
-import serverTemplates from '../../../../../assets/server_templates/templates'
+import { useFetchTemplates } from '../../../../../hooks/useTemplateLoader'
+
 interface StepOneProps extends React.ComponentPropsWithRef<'div'> {
   closeModal: () => void
   setStep: (step: number) => void
 }
 
 export default function CreateServerStepOne({ closeModal, setStep }: StepOneProps) {
+  const { templates, loading, error } = useFetchTemplates()
   return (
     <div className="w-[400px] pb-[100px] py-4 px-4 h-full gap-2 flex flex-col justify-center items-center relative thin-scroll">
       <div className="absolute right-0 top-0 text-skin-muted">

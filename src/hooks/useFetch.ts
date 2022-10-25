@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 
-const useFetch = (url: string, options: any) => {
-  const [response, setResponse] = useState(null)
-  const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(true)
+const useFetch = (url: string, options?: any) => {
+  const [response, setResponse] = useState<any | null>(null)
+  const [error, setError] = useState<any | null>(null)
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,3 +22,5 @@ const useFetch = (url: string, options: any) => {
 
   return { response, error, loading }
 }
+
+export default useFetch

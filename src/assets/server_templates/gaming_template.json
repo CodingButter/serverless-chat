@@ -1,0 +1,29 @@
+{
+  "avatar": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/icons/nodes-icon.png",
+  "extends": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/server_templates/basic_template.json",
+  "categories": [
+    {
+      "id": "FAVORITE_GAMES",
+      "name": "Favorite Games",
+      "description": "Games that you like to play",
+      "position": 0
+    }
+  ],
+  "channels": [
+    {
+      "name": "General",
+      "description": "General chat channel",
+      "type": "text"
+    },
+    {
+      "name": "Random",
+      "description": "Random chat channel",
+      "type": "text"
+    },
+    {
+      "name": "Voice",
+      "description": "Voice chat channel",
+      "type": "voice"
+    }
+  ]
+}

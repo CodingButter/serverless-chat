@@ -21,7 +21,7 @@ const windowOptions = {
   webPreferences: {
     devTools: isDev,
     contextIsolation: true,
-    webSecurity: !isDev,
+    webSecurity: false, //! isDev,
     preload: join(__dirname, 'preload.js')
   }
 }

@@ -2,28 +2,33 @@
   "default_template": {
     "label": "Basic Template",
     "icon": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/icons/nodes-icon.png",
-    "description": "Chat and spend time with your friends"
+    "description": "Chat and spend time with your friends",
+    "template_path": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/server_templates/basic_template.json"
   },
   "additional_templates": [
     {
       "label": "Gaming",
       "icon": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/icons/nodes-icon.png",
-      "description": "Play games with your friends"
+      "description": "Play games with your friends",
+      "template_path": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/server_templates/gaming_template.json"
     },
     {
       "label": "School Club",
       "icon": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/icons/nodes-icon.png",
-      "description": "Talk about school stuff"
+      "description": "Talk about school stuff",
+      "template_path": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/server_templates/school_template.json"
     },
     {
       "label": "Study Group",
       "icon": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/icons/nodes-icon.png",
-      "description": "Study together"
+      "description": "Study together",
+      "template_path": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/server_templates/study_template.json"
     },
     {
       "label": "Fan Club",
       "icon": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/icons/nodes-icon.png",
-      "description": "Talk about your favorite things"
+      "description": "Talk about your favorite things",
+      "template_path": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/server_templates/fan_template.json"
     }
   ]
 }
