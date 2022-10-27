@@ -1,7 +1,7 @@
 {
   "default_template": {
     "label": "Basic Template",
-    "icon": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/icons/nodes-icon.png",
+    "icon": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/icons/bigTest.jpg",
     "description": "Chat and spend time with your friends",
     "template_path": "https://raw.githubusercontent.com/CodingButter/serverless-chat/main/src/assets/server_templates/basic_template.json"
   },
