@@ -14,7 +14,7 @@ const windowBounds = (storage.get('windowBounds') as any) || { width: 800, heigh
 const windowOptions = {
   ...windowBounds,
   //  change to false to use AppBar
-  frame: isDev,
+  frame: false, // isDev,
   show: true,
   resizable: true,
   fullscreenable: true,

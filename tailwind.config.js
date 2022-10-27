@@ -25,7 +25,11 @@ module.exports = {
           base: withOpacity('--bg-base'),
           muted: withOpacity('--bg-muted'),
           surface: withOpacity('--bg-surface'),
-          notification: withOpacity('--bg-notification')
+          notification: withOpacity('--bg-notification'),
+          'button-base': withOpacity('--bg-button-base'),
+          'button-muted': withOpacity('--bg-button-muted'),
+          'button-hover': withOpacity('--bg-button-hover'),
+          'button-inverted': withOpacity('--bg-button-inverted')
         }
       }
     }

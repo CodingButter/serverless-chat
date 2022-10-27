@@ -5,6 +5,7 @@ interface InputProps extends React.ComponentPropsWithRef<'input'> {
   className?: string
   onEnter?: () => void
   focus?: boolean
+  onChnage?: (value: string) => void
 }
 
 const Input = forwardRef(({ className, onEnter, focus, ...rest }: InputProps, ref) => {
@@ -27,7 +28,6 @@ const Input = forwardRef(({ className, onEnter, focus, ...rest }: InputProps, re
       }
     }
   }, [inputRef?.current, focus])
-  const classes = classNames('w-full p-2 rounded bg-skin-muted/10 text-skin-inverted', className)
   return <input ref={inputRef} className={classNames('rounded p-2 bg-skin-base', className)} {...rest} />
 })
 export default Input

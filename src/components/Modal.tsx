@@ -29,7 +29,7 @@ export default function Modal({ closeModal, closed, show, setShow, children, ...
       {...rest}
       className={`w-full h-full flex flex-col justify-center items-center gap-4 ${
         !show ? 'z-[-100]' : 'z-[100]'
-      } top-0 left-0 absolute ${closed ? 'bg-none' : 'bg-skin-base/50'}`}
+      } top-0 left-0 absolute ${closed ? 'bg-none' : 'bg-skin-base/80'}`}
     >
       <button aria-label="close" onClick={closeModal} className="w-full h-full absolute top-0 left-0" />
       <animated.div style={modalStyles} className="z-[50]">

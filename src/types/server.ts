@@ -16,6 +16,7 @@ type Role = {
   additional_permissions: string[]
   denied_permissions: string[]
 }
+
 type Permission = {
   id: string
   name: string
@@ -38,6 +39,7 @@ export type Server = {
   creation_date: string | null | undefined
   avatar: string | null | undefined
   categories: Category[]
+  extends?: string
   channels: Channel[]
   roles: Role[]
   channel_permissions: Permission[]

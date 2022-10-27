@@ -1,4 +1,4 @@
-import React, { useContext, createContext, useMemo } from 'react'
+import React, { useContext, createContext, useMemo, useState } from 'react'
 import useLocalStorage from './useLocalStorage'
 import { User } from '../types/user'
 
@@ -10,15 +10,16 @@ export const useAuth = () => {
 
 const parseJwt = (token: string) => {
   try {
-    const buff = Buffer.from(token.split('.')[1], 'base64')
-    return JSON.parse(buff.toString('utf-8'))
+    return JSON.parse(atob(token.split('.')[1]))
   } catch (e) {
-    return { error: e }
+    console.log(e)
+    return {}
   }
 }
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useLocalStorage<User>('user', { id: null, loggedIn: false, token: null, username: null })
+  const [error, setError] = useState<string | null>(null)
   const login = (token: string) => {
     const { id, username } = parseJwt(token) as User
     setUser({ id, loggedIn: true, token, username })

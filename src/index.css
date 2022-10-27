@@ -24,6 +24,12 @@ body,
     --bg-surface: 54, 57, 63;
     --bg-notification: 114, 137, 218;
 
+    --bg-button-base: 88, 101, 242;
+    --bg-button-disabled: 150, 150, 150;
+    --bg-button-muted: 114, 137, 218;
+    --bg-button-inverted: 35, 39, 42;
+    --bg-button-hover: 71, 82, 196;
+
     --color-alert: 240, 71, 71;
     --color-alert-muted: 179, 66, 68;
   }

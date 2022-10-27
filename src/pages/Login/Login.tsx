@@ -4,6 +4,7 @@ import Background from '../../assets/images/login-background.png'
 import Input from '../../components/Input'
 import Surface from '../../components/Surface'
 import { useAuth } from '../../hooks/useAuth'
+import { User } from '../../types/user'
 import { useSnackBar } from '../../hooks/useSnackBar'
 import { fetchData } from '../../hooks/useApi'
 import { useModal } from '../../hooks/useModal'
@@ -12,6 +13,7 @@ import PrivateKeyDisplay from './components/PrivateKeyDisplay'
 export default function Login() {
   const navigate = useNavigate()
   const { login } = useAuth()
+
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const passwordRef = useRef<HTMLInputElement>(null)

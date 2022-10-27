@@ -3,7 +3,7 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "target": "ES2022",
-    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "lib": ["DOM", "DOM.Iterable", "ES2022", "ES2017"],
     "typeRoots": ["node_modules/@types", "**/src/@types"],
     "types": ["vite/client", "node"],
     "allowJs": false,

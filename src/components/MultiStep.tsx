@@ -43,13 +43,13 @@ export default function MultiStep({ children, step }: StepProps) {
     }
   }, [])
   return (
-    <div className="overflow-hidden transition-all duration-500" style={sizeStyle}>
+    <div className="overflow-hidden transition-all flex justify-start items-end duration-500" style={sizeStyle}>
       <div
-        className="multi-step transition-all duration-500 flex justify-start items-start"
+        className="multi-step transition-all duration-500 flex justify-start items-end"
         style={{ transform, width: `${totalWidth}px` }}
       >
         {Children.map(children, (child, index) => (
-          <div className="flex justify-start items-center" style={styledSizes[index]}>
+          <div className="flex justify-start items-end transition-all duration-500" style={styledSizes[index]}>
             {child}
           </div>
         ))}
