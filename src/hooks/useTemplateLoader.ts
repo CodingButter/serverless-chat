@@ -1,5 +1,5 @@
 import { Server, Templates } from '../types/server'
-import useFetchJson from './useFetchJson'
+import fetchJson from './fetchJson'
 
 interface MergeTemplateProps {
   defaultTemplate: Partial<Server>
@@ -25,12 +25,12 @@ export const mergeTemplates = ({ defaultTemplate, mergingTemplate }: MergeTempla
 }
 
 export async function useFetchTemplates({ url }: { url: string }) {
-  const templates = await useFetchJson<Promise<Templates>>(url)
+  const templates = await fetchJson<Promise<Templates>>(url)
   return templates
 }
 
 export async function useFetchTemplate({ url, template }: { url: string; template?: Server }) {
-  const serverTemplate = await useFetchJson<Promise<Server>>(url)
+  const serverTemplate = await fetchJson<Promise<Server>>(url)
   const serverTemplateResponse = (
     serverTemplate?.extends
       ? mergeTemplates({

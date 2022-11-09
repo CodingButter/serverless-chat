@@ -9,13 +9,13 @@ const databases = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: join(__dirname, './data/local.db3')
+      filename: join(__dirname, './electron/data/local.db3')
     },
     seeds: {
-      directory: join(__dirname, './data/seeds')
+      directory: join(__dirname, './electron/data/seeds')
     },
     migrations: {
-      directory: join(__dirname, './data/migrations')
+      directory: join(__dirname, './electron/data/migrations')
     },
     useNullAsDefault: true
   }

@@ -10,13 +10,13 @@ interface FetchJsonOptions {
   options?: any
 }
 
-async function fetchData<TResponse>(url: string, { ...options }: FetchJsonOptions = {}) {
+async function fetchData<TResponse>(url: string, { options }: FetchJsonOptions = {}) {
   const response = await fetch(url, options as any)
   const json = await response.json()
   return json as Promise<TResponse>
 }
 
-export default async function useFetchJson<TResponse>(
+export default async function fetchJson<TResponse>(
   url: string,
   { cache = true, refetchInterval, ...options }: FetchJsonOptions = {}
 ) {
@@ -28,7 +28,7 @@ export default async function useFetchJson<TResponse>(
     }
   }
   refetchIntervalStore.set(hashKey, Date.now())
-  const response = fetchData<Promise<TResponse>>(url, { ...options } as any)
+  const response = fetchData<Promise<TResponse>>(url, options as any)
   cacheStore.set(hashKey, response)
   refetchIntervalStore.set(hashKey, Date.now())
   return response

@@ -22,16 +22,18 @@ const getRequestType = (endpoint: string) => {
   }
 }
 
-export const fetchData = async (endpoint: string, payload?: any, jwt?: string) => {
+export const fetchData = async (endpoint: string, payload?: any, jwt?: string, formData = false) => {
   const apiAddress = await window.Main.getServerAddress()
   const method = getRequestType(endpoint)
+  const headers = {} as any
+  if (!formData) {
+    headers['Content-Type'] = 'application/json'
+  }
+  headers.Authorization = `Bearer ${jwt}`
   const response = await fetch(`${apiAddress}${endpoint}`, {
     method,
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${jwt}`
-    },
-    body: JSON.stringify(payload)
+    headers,
+    body: payload
   })
   return response.json()
 }
@@ -44,7 +46,7 @@ const useApi = (endpoint: string, payload?: any) => {
 
   const handleFetchData = async () => {
     try {
-      const res = await fetchData(endpoint, payload, user.token)
+      const res = await fetchData(endpoint, payload && JSON.stringify(payload), user.token)
       setResponse(res)
       setLoading(false)
     } catch (err: any) {

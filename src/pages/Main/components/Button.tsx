@@ -18,6 +18,7 @@ export default function Button({ children, className, primary = true, muted, dan
         danger && 'bg-skin-button-danger',
         className
       )}
+      {...rest}
     >
       {children}
     </button>

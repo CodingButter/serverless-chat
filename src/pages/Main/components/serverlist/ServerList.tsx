@@ -23,7 +23,7 @@ export default function ServerList({ servers }: { servers: any }) {
           key={server.id}
           serverName={server.name}
           onClick={() => handleSelectServer(server.id)}
-          avatar={server?.ServerSettings?.avatar}
+          avatar={server?.avatar}
         />
       ))}
       <ServerButton onClick={handleCreateServer} />

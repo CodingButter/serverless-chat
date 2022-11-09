@@ -20,7 +20,7 @@ export default function Login() {
   const { addSnackBar } = useSnackBar()
   const { openModal, closeModal } = useModal()
   const handleLogin = async () => {
-    const data = await fetchData('/login', { username, password })
+    const data = await fetchData('/login', JSON.stringify({ username, password }))
     if (data.token) {
       login(data.token)
       navigate('/')
@@ -28,27 +28,16 @@ export default function Login() {
       addSnackBar(data.error, 'error')
     }
   }
-
+  const handleCloseRegister = () => {
+    closeModal()
+    handleLogin()
+  }
   const handleRegister = async () => {
-    // const data = await fetchData('/register', { username, password })
-    const data = {
-      token: 'test',
-      privateKey: [
-        '-----BEGIN RSA PRIVATE KEY-----',
-        'MIIBOQIBAAJAVY6quuzCwyOWzymJ7C4zXjeV/232wt2ZgJZ1kHzjI73wnhQ3WQcL',
-        'DFCSoi2lPUW8/zspk0qWvPdtp6Jg5Lu7hwIDAQABAkBEws9mQahZ6r1mq2zEm3D/',
-        'VM9BpV//xtd6p/G+eRCYBT2qshGx42ucdgZCYJptFoW+HEx/jtzWe74yK6jGIkWJ',
-        'AiEAoNAMsPqwWwTyjDZCo9iKvfIQvd3MWnmtFmjiHoPtjx0CIQCIMypAEEkZuQUi',
-        'pMoreJrOlLJWdc0bfhzNAJjxsTv/8wIgQG0ZqI3GubBxu9rBOAM5EoA4VNjXVigJ',
-        'QEEk1jTkp8ECIQCHhsoq90mWM/p9L5cQzLDWkTYoPI49Ji+Iemi2T5MRqwIgQl07',
-        'Es+KCn25OKXR/FJ5fu6A6A+MptABL3r8SEjlpLc=',
-        '-----END RSA PRIVATE KEY-----'
-      ].join('\n')
-    }
+    const { user, token } = await fetchData('/register', JSON.stringify({ username, password }))
 
-    if (data.token) {
+    if (token) {
       // login(data.token)
-      openModal(<PrivateKeyDisplay privateKey={data.privateKey} closeModal={closeModal} username={username} />)
+      openModal(<PrivateKeyDisplay privateKey={user.privateKey} closeModal={handleCloseRegister} username={username} />)
     }
   }
   return (
